@@ -1,90 +1,55 @@
 //*--------------------------Star Wars Trivia----------------------------*\\
-var question = 1;
-var questionLeft = " [ Question " + question + " ]";
-var answerRight = 0;
-var answerWrong = 0;
 
+var questionsAnswers = [
+	["What is Luke Skywalker's father's name?", "anakin"],
+	["Who shot first?", "han solo"],
+	["True or False, Leia is Rey's mother.", "false"],
+	["On what planet did Rey and Finn first board the millenium falcon?", "jakku"],
+	["Who is leader of the knights of ren?","kylo ren"],
+	["who is considered to be the most annoying Star Wars character of all time?", "jar jar binks"],
+	["True or false, Darth Vader has a higher medoclorian count than master yoda", "true"]
+]; 
 
-alert("I am going to test your Star Wars knowldge");
-alert("Now let's begin!!");
+var answerRight = 0; 
+var answer;
+var response;
+var question;    
+var html;  
+var wrong = []; 
+var correct = [];  
 
-var userAnswer = prompt( questionLeft + " What is Luke Skywalker's father's first name?? ");
-if(userAnswer.toUpperCase() === "ANAKIN") {
-    alert("That answer is correct!");
-    answerRight +=1;
-}   else{
-    alert("Sorry that's incorrect");
-    answerWrong += 1;
-}   
-question += 1;
-questionLeft = " [ Question " + question + " ]";
+function print(message) {
+  var outputDiv = document.getElementById('output');
+  outputDiv.innerHTML = message;
+} 
  
-var userAnswer2 = prompt( questionLeft + " Who shot first?");
-if(userAnswer2.toUpperCase() === "HAN SOLO") {
-    alert("That answer is correct!");
-    answerRight +=1;
-}   else{
-    alert("Sorry that's incorrect");
-    answerWrong +=1;
-} 
-question += 1;
-questionLeft = " [ Question " + question + " ]";
-
-var userAnswer3 = prompt( questionLeft + " True or False, Leia is Rey's mother  ");
-if(userAnswer3.toUpperCase() === "FALSE") {
-    alert("That answer is correct!");
-    answerRight +=1;
-}   else{
-    alert("Sorry that's incorrect");
-    answerWrong +=1;
-} 
-question += 1;
-questionLeft = " [ Question " + question + " ]";
-
-var userAnswer4 = prompt( questionLeft + " On what planet did Rey and Finn first board the millenium falcon? ");
-if(userAnswer4.toUpperCase() === "JAKKU") {
-    alert("That answer is correct!");
-    answerRight +=1;
-}   else{
-    alert("Sorry that's incorrect");
-    answerWrong +=1;
-} 
-question += 1;
-questionLeft = " [ Question " + question + " ]";
-
-var userAnswer5 = prompt( questionLeft + " Who is the leader of the Knights of Ren?");
-if(userAnswer5.toUpperCase() === "KYLO REN") {
-    alert("That answer is correct!");
-    answerRight +=1;
-}   else{
-    alert("Sorry that's incorrect");
-    answerWrong +=1;
-} 
-question += 1;
-questionLeft = " [ Question " + question + " ]";
-
-var userAnswer6 = prompt( questionLeft + " Who is considered the most annoying Star Wars character of all time?");
-if(userAnswer6.toUpperCase() === "JAR JAR BINKS") {
-    alert("That answer is correct!");
-    answerRight +=1;
-}   else{
-    alert("Sorry that's incorrect");
-    answerWrong +=1;
-} 
-question += 1;
-questionLeft = " [ Question " + question + " ]";
-
-var userAnswer7 = prompt( questionLeft + " True or False, Darth Vader has a higher medoclorian count than master Yoda");
-if(userAnswer7.toUpperCase() === "TRUE") {
-    alert("That answer is correct!");
-    answerRight +=1;
-}   else{
-    alert("Sorry that's incorrect");
-    answerWrong +=1;
+function buildList(quiz){
+	var listHTML = "<ol>";
+	for ( var j = 0; j < quiz.length; j += 1 ){
+		listHTML += "<li>" + quiz[j] + "</li>"; 
+	} 	listHTML += "</ol>"; 
+	  	return listHTML;
 } 
 
+for ( var i = 0; i < questionsAnswers.length; i += 1 ){
+	question = questionsAnswers[i][0];
+	answer = questionsAnswers[i][1];
+	response = prompt(question);
+	response = response.toLowerCase();
+	if ( response === answer){
+		answerRight += 1;  
+		correct.push(question); 
+	} else{   
+		wrong.push(question);
+	}  
+}  
 
-document.write("<p> Looks like you got " + answerRight + " right and " + answerWrong + " wrong out of " + question + " questions </p>");
+html = "You got " + answerRight + " question(s) right.";  
+html += '<h2>You got these questions correct:</h2>';
+html += buildList(correct);
+html += '<h2>You got these questions wrong:</h2>';
+html += buildList(wrong); 
+print(html)  
 
 
 
