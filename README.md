@@ -1,5 +1,5 @@
 # StarWarsTrivia
-a starwars trivia coded with simple javascript
+a starwars trivia coded with javascript
 
 Going to add loops in future
 
